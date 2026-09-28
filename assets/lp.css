@@ -39,7 +39,10 @@ section,[id]{scroll-margin-top:120px}
 .nav a{display:block;white-space:nowrap;color:#d9dbee;text-decoration:none;font-size:14px;font-weight:600;padding:11px 12px;border-bottom:3px solid transparent}
 .nav a:hover{color:#fff}
 .nav a[aria-current="page"]{color:#fff;border-bottom-color:var(--orange)}
-@media(max-width:640px){.top .hours{display:none}.top .logo img{height:32px}.top .call{padding:9px 13px;font-size:14px}.nav a{font-size:13.5px;padding:10px 10px}}
+.nav .ns{display:none}
+@media(max-width:640px){.top .hours{display:none}.top .logo img{height:32px}.top .call{padding:9px 13px;font-size:14px}.nav a{font-size:13.5px;padding:10px 10px}
+  .nav .nl{display:none}.nav .ns{display:inline}
+  .nav{position:relative}.nav::after{content:"";position:absolute;right:0;top:0;bottom:0;width:36px;pointer-events:none;background:linear-gradient(90deg,rgba(35,35,61,0),var(--navy-2))}}
 
 /* hero: answers the four questions before any scrolling */
 .hero{background:linear-gradient(180deg,#fbfbfd,#eef0f5);border-bottom:1px solid var(--line)}
@@ -63,6 +66,22 @@ section,[id]{scroll-margin-top:120px}
 .hero figure img{border-radius:18px;box-shadow:0 24px 50px -24px rgba(26,26,46,.55);aspect-ratio:4/3;object-fit:cover;width:100%}
 .hero figcaption{position:absolute;left:14px;bottom:14px;background:rgba(26,26,46,.88);color:#fff;font-size:13px;font-weight:600;padding:7px 12px;border-radius:999px}
 @media(max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:22px;padding-top:24px;padding-bottom:30px}.hero figure img{aspect-ratio:16/9}.btn-call{width:100%;justify-content:center;font-size:19px}.hero p.sub{font-size:16.5px}}
+/* phones: a short real photo strip first, then headline, one promise, availability, stars, call. No text wall. */
+@media(max-width:640px){
+  .hero .wrap{gap:14px;padding-top:0;padding-bottom:22px}
+  .hero figure{order:-1;margin:0 -20px}
+  .hero figure img{aspect-ratio:auto;height:22vh;min-height:140px;max-height:210px;border-radius:0;box-shadow:none;object-position:center 40%}
+  .hero figcaption{display:none}
+  .hero .wrap > div{display:flex;flex-direction:column}
+  .hero .loc{order:1;font-size:13px;margin-bottom:6px}
+  #headline{order:2;font-size:28px}
+  .hero p.sub,.checks .m-hide{display:none}
+  .checks{order:3;margin:12px 0 12px;gap:6px}
+  .checks li{font-size:15px}
+  .rating{order:4;margin:0 0 14px;align-self:flex-start}
+  .cta-row{order:5}
+  .hero .fine{order:6;margin-top:8px}
+}
 
 /* trust strip */
 .trust{background:var(--navy);color:#e9eaf5}
