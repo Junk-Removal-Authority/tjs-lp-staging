@@ -3,7 +3,7 @@
    every surface paints its own background so the page holds on any host. */
 :root{
   --navy:#1a1a2e; --navy-2:#23233d; --ink:#1f2937; --muted:#5b6472; --line:#e3e5ea;
-  --orange:#f4511e; --orange-dark:#d8410f; --sky:#3fa9f5; --bg:#ffffff; --soft:#f4f5f8; --star:#f5b301;
+  --orange:#f4511e; --orange-dark:#d8410f; --orange-text:#b93a0b; --sky:#3fa9f5; --bg:#ffffff; --soft:#f4f5f8; --star:#f5b301;
   --ok:#1f9d55; --radius:12px;
 }
 *{box-sizing:border-box}
@@ -17,7 +17,7 @@ h1{font-size:clamp(30px,5vw,48px);font-weight:800;letter-spacing:-.5px}
 h2{font-size:clamp(24px,3.3vw,34px);font-weight:800}
 h3{font-size:18px;font-weight:700}
 p{margin:0}
-.eyebrow{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+.eyebrow{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-text);margin-bottom:8px}
 section{padding:56px 0}
 .center{text-align:center}
 .lead{color:var(--muted);max-width:42em;margin:12px auto 0}
