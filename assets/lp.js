@@ -27,17 +27,24 @@
     var h = document.getElementById('headline'), loc = document.getElementById('locText');
     var base = body.dataset.service; /* e.g. "Hot Tub Removal" */
     var name = svc || base;
+    var eyebrow = document.getElementById('heroPlace'); /* STYLE=chris only: the place sits in an eyebrow above the H1 */
+    if (eyebrow) {
+      if (city) eyebrow.textContent = city + ', CT';
+      if (svc) h.textContent = svc;
+    } else if (city || svc) {
+      h.textContent = name + ' in ' + (city || body.dataset.place);  /* Lee 9/30: plain service + place */
+    }
     if (city) {
-      h.textContent = name + ' in ' + city + ', CT';
-      if (loc) loc.textContent = 'Local crew serving ' + city + ' and every town around it';
       document.querySelectorAll('[data-town="'+city+'"]').forEach(function(el){ var m = document.createElement('mark'); m.textContent = city; el.replaceWith(m); });
       var yes = document.getElementById('areaYes'), yt = document.getElementById('areaYesText');
       if (yes) yes.textContent = 'Yes, we serve ' + city + '.';
-      if (yt) yt.textContent = 'Call and we\'ll get you on the schedule. Same-day is often available.';
-    } else if (svc) {
-      h.textContent = svc + ' in Hartford County & Beyond';
+      var map = document.querySelector('.area-map'), pin = document.getElementById('cityPin');
+      if (map && pin) { try { var P = JSON.parse(map.getAttribute('data-xy'))[city];
+        if (P) { pin.setAttribute('transform', 'translate(' + P[0] + ',' + P[1] + ')'); document.getElementById('cityPinLabel').textContent = city; pin.removeAttribute('hidden'); map.classList.add('has-city'); } } catch(e){} }
+      /* same-day only where the page itself makes that claim (data-same-day, set by build.py) */
+      if (yt) yt.textContent = 'Call and we\'ll get you on the schedule.' + (body.dataset.sameDay ? ' Same-day is often available.' : '');
     }
-    if (city || svc) document.title = h.textContent + " | TJ's Cleanout Services";
+    if (city || svc) document.title = name + ' in ' + (city || body.dataset.place) + " | TJ's Cleanout Services";
   })();
 
   /* 2) Availability line: true statements computed from TJ's published phone hours, in Eastern time. */
@@ -71,15 +78,32 @@
     window.dataLayer.push({event: a.classList.contains('phone-link') ? 'lp_call_click' : 'lp_book_click', cta: a.getAttribute('data-cta'), lp_page: body.dataset.page});
   });
 
-  /* 5) Privacy notice: equal-weight choice, honors Global Privacy Control, sits above the sticky call bar. */
+  /* 5) Privacy choices. Lee 9/29: no banner by default (the notice only has to show where a state requires it,
+        and a static page cannot tell the visitor's state). GPC is still honored before GTM loads, and the
+        footer "Privacy choices" link opens the same equal-weight opt out at any time. */
   (function(){
-    var box = document.getElementById('privacy'), seen = null;
-    try { seen = localStorage.getItem('tjs_privacy_seen'); } catch(e){}
-    if (!seen && navigator.globalPrivacyControl !== true) box.classList.add('show');
+    var box = document.getElementById('privacy'); if (!box) return;
     function done(optOut){ try { localStorage.setItem('tjs_privacy_seen','1'); if (optOut) localStorage.setItem('tjs_privacy_optout','1'); } catch(e){} box.classList.remove('show'); if (optOut) location.reload(); }
     document.getElementById('pOk').onclick = function(){ done(false); };
     document.getElementById('pNo').onclick = function(){ done(true); };
     document.getElementById('privacyChoices').onclick = function(e){ e.preventDefault(); box.classList.add('show'); };
+  })();
+
+
+  /* 7) Sticky call bar (phones): shows only after the hero buttons have scrolled away, and hides again while the
+        final call section is on screen, so two sets of call buttons are never in view at once (Lee 9/29). */
+  (function(){
+    var bar = document.querySelector('.sticky'), hero = document.querySelector('.hero .cta-row'), fin = document.querySelector('.final');
+    if (!bar) return;
+    if (!hero) { bar.classList.add('show'); return; }
+    function upd(){
+      var past = hero.getBoundingClientRect().bottom < 0, finVis = false;
+      if (fin) { var f = fin.getBoundingClientRect(); finVis = f.top < window.innerHeight && f.bottom > 0; }
+      bar.classList.toggle('show', past && !finVis);
+    }
+    window.addEventListener('scroll', upd, {passive: true});
+    window.addEventListener('resize', upd);
+    upd();
   })();
 
   /* 6) Live Google reviews (Places API New, via Maps JS). Loads after the page is interactive so it never
