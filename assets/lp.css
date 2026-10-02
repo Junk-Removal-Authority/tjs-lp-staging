@@ -422,3 +422,22 @@ h1{font-size:clamp(38px,5.4vw,56px);line-height:1.05}
 .sec-eyebrow{display:block;color:var(--blue);margin:0 0 8px}
 .sec-sub{color:var(--muted);margin:10px auto 0;max-width:40em}
 .final .sec-eyebrow{color:#7fe3b2}
+
+/* ===== 10/2 Lee on iPhone: sticky bar was chopped by the home indicator and the call didn't stand out =====
+   Bar respects the safe area (viewport-fit=cover + env()), is taller and full width. Call is the primary:
+   big orange with the number (CallRail swaps it). Schedule is the secondary beside it. Both 56px tall. */
+:root{--sticky-h:78px}
+.sticky{left:0;right:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));gap:8px;background:#fff;border-top:1px solid #d5d9e2;box-shadow:0 -10px 24px -12px rgba(0,0,0,.35)}
+.sticky a{min-height:56px;padding:8px 10px;border-radius:var(--btn-r);white-space:nowrap}
+.sticky .s-call{flex:1.7;background:var(--orange);color:#111;font-size:18px;font-weight:800;gap:7px;box-shadow:0 8px 18px -10px rgba(244,81,30,.9)}
+.sticky .s-call .phone-text{color:#111;font-weight:800}
+.sticky .s-call svg{width:20px;height:20px;flex-shrink:0;fill:#111}
+.sticky .s-book{flex:1;background:#fff;color:var(--navy);border:2px solid var(--navy);font-size:16px;font-weight:700}
+/* narrow phones: "Call" stays in the accessible name but is visually hidden so the number fits */
+@media(max-width:389px){.sticky .s-call{font-size:16.5px}.sticky .s-call .s-lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.sticky .s-book{font-size:15px}}
+/* the page always ends with room for the bar, so it never sits on top of the last CTA or the footer */
+@media(max-width:900px){
+  body{padding-bottom:calc(var(--sticky-h) + env(safe-area-inset-bottom,0px))}
+  html{scroll-padding-bottom:calc(var(--sticky-h) + 20px + env(safe-area-inset-bottom,0px))}
+  .privacy{bottom:calc(var(--sticky-h) + 8px + env(safe-area-inset-bottom,0px))}
+}

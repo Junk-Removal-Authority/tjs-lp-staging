@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Schedule an On-Site Estimate | TJ's Cleanout Services</title>
 <meta name="description" content="Schedule an on-site estimate with TJ's Cleanout Services.">
 <!-- PPC landing page, kept out of search on purpose. Do NOT block in robots.txt: Google must crawl to see noindex, and AdsBot must reach it. -->
@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="../assets/lp.css?v=239c4752">
+<link rel="stylesheet" href="../assets/lp.css?v=8be19f31">
 <script>
 /* Same GTM container as the main site, so CallRail's Google Ads number pool swaps the phone number here
    and Google Ads conversions fire. Skipped when the browser sends Global Privacy Control or the visitor opted out
@@ -62,13 +62,14 @@
 </footer>
 
 <div class="sticky" role="region" aria-label="Call TJ's">
-  <a class="s-call phone-link" href="tel:+18605039062" data-cta="sticky_call"><span aria-hidden="true">&#9742;</span> Call Now</a>
+  <!-- Lee 10/2 (iPhone): Call is the primary button and shows the number (phone-text, so CallRail swaps it); Schedule is secondary. -->
+  <a class="s-call phone-link" href="tel:+18605039062" data-cta="sticky_call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg><span class="s-lbl">Call</span> <span class="phone-text">(860) 503-9062</span></a>
   <a class="s-book book-link" href="../book/" data-cta="sticky_book">Schedule</a>
 </div>
 <div class="privacy" id="privacy" role="region" aria-label="Privacy choices">
   <span>We use cookies to measure our ads and improve this page.</span>
   <span style="display:flex;gap:8px;flex-shrink:0"><button class="no" id="pNo">Opt out</button><button class="ok" id="pOk">OK</button></span>
 </div>
-<script src="../assets/lp.js?v=239c4752" defer></script>
+<script src="../assets/lp.js?v=8be19f31" defer></script>
 </body>
 </html>
