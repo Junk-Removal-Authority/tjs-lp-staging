@@ -442,6 +442,30 @@ h1{font-size:clamp(38px,5.4vw,56px);line-height:1.05}
   .privacy{bottom:calc(var(--sticky-h) + 8px + env(safe-area-inset-bottom,0px))}
 }
 
+/* ===== 10/2 Shane via Lee: counties served right under the H1, and a small map beside the buttons on desktop ===== */
+.hero .serving{margin:12px 0 0;font-size:17px;line-height:1.4;font-weight:700;color:var(--navy)}
+.hero .serving + .benefit{margin-top:10px}
+.hero-ctas{display:flex;align-items:center;gap:16px}
+.hero-ctas .cta-row{flex:1;min-width:0}
+.hero-map{display:none}
+@media(min-width:1100px){
+  .hero-map{display:flex;flex-direction:column;align-items:center;gap:4px;flex:0 0 132px;text-decoration:none;color:var(--navy);font-size:12.5px;font-weight:700}
+  .hero-map img{width:132px;height:auto;border:1px solid var(--line);border-radius:8px;background:#eef3f8}
+  .hero-map span{text-decoration:underline;text-underline-offset:2px}
+  .hero-map:hover img{border-color:var(--navy)}
+  .hero-card{max-width:770px}
+  .hero-ctas .cta-row{grid-template-columns:1fr 1fr}
+  .hero-ctas .cta-row .btn-call,.hero-ctas .cta-row .btn-est{font-size:16px;padding:14px 12px}
+}
+@media(max-width:640px){.hero .serving{font-size:15.5px;margin-top:8px}.hero .serving + .benefit{margin-top:6px}}
+/* short phones (iPhone SE and similar, 667px tall): smaller photo strip and no benefit line, so the call button and the
+   rating stay on the first screen with the counties line added (Lee 9/28 first screen rule) */
+@media(max-width:640px) and (max-height:740px){
+  .hero .hero-bg{height:14vh;min-height:88px;max-height:120px}
+  .hero .benefit{display:none}
+  .hero .serving{margin-bottom:14px}
+}
+
 /* ===== STYLE=real (10/2): "less template, more TJ's". Appended after lp.css only in the real build.
    TJ's own brand from tjscleanoutservices.com: primary #1A3A5C, dark #0F2640, CTA orange #F4511E,
    accent #F97316, and the light blue of the TJ's lettering on the shirts and trucks (used on dark only).
