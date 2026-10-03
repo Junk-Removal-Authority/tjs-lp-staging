@@ -78,6 +78,8 @@
   document.addEventListener('click', function(e){
     var a = e.target.closest('[data-cta]'); if (!a) return;
     window.dataLayer = window.dataLayer || [];
+    /* Lee 10/2: home page service cards and specialty tiles */
+    if (a.hasAttribute('data-service')) { window.dataLayer.push({event: 'lp_service_click', service: a.getAttribute('data-service'), cta: a.getAttribute('data-cta'), lp_page: body.dataset.page}); return; }
     window.dataLayer.push({event: a.classList.contains('phone-link') ? 'lp_call_click' : 'lp_book_click', cta: a.getAttribute('data-cta'), lp_page: body.dataset.page});
   });
 

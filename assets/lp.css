@@ -465,3 +465,46 @@ h1{font-size:clamp(38px,5.4vw,56px);line-height:1.05}
   .hero .benefit{display:none}
   .hero .serving{margin-bottom:14px}
 }
+
+/* ===== 10/2 Lee: Junk Removal and Cleanouts stand out on home. Two big cards, then a compact specialty row ===== */
+#headline .accent + .accent{color:#1f5fbf}
+.svc2{padding:44px 0 40px}
+.svc-cards{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.svc-card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.svc-card img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.svc-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.svc-body h2{font-size:clamp(26px,3vw,32px)}
+.svc-body p{color:#374151;font-size:16.5px;flex:1}
+.svc-btn{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;margin-top:6px;background:var(--navy);color:#fff;font-weight:700;font-size:16.5px;text-decoration:none;padding:13px 20px;border-radius:var(--btn-r,10px)}
+.svc-btn:hover{background:#2b2b4a}
+.svc-mini-h{font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:30px 0 10px}
+.svc-mini{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.svc-mini a{position:relative;display:block;height:100%;border:1px solid var(--line);border-radius:12px;padding:14px 34px 14px 16px;text-decoration:none;background:#fff}
+.svc-mini a:hover{border-color:var(--navy)}
+.svc-mini b{display:block;color:var(--navy);font-size:16px;line-height:1.25}
+.svc-mini span{display:block;color:var(--muted);font-size:13.5px;margin-top:3px}
+.svc-mini i{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-style:normal;font-weight:700;color:var(--orange-text);font-size:20px}
+@media(max-width:900px){.svc-mini{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.svc-cards{grid-template-columns:1fr;gap:16px}.svc2{padding:28px 0 30px}.svc-btn{align-self:stretch;justify-content:center}}
+@media(max-width:420px){.svc-mini{grid-template-columns:1fr}}
+/* compact "What we take" list (home) */
+.take-compact .take-list{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:36px;text-align:left}
+.tl-row{border-bottom:1px solid var(--line)}
+.tl-row > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:12px 30px 12px 0;position:relative}
+.tl-row > summary::-webkit-details-marker{display:none}
+.tl-row > summary::after{content:"+";position:absolute;right:2px;top:50%;transform:translateY(-50%);font-size:22px;font-weight:700;color:var(--orange-text)}
+.tl-row[open] > summary::after{content:"\2212"}
+.tl-row summary img{width:72px;height:54px;object-fit:cover;border-radius:6px;flex-shrink:0}
+.tl-tx b{display:block;color:var(--navy);font-size:16.5px}
+.tl-tx span{color:var(--muted);font-size:14px}
+.tl-open{padding:0 0 14px}
+.tl-open .items{margin-top:2px}
+.tl-foot{margin-top:12px}
+.tl-foot .btn-call,.tl-foot .btn-call .phone-text{color:#111}
+.tl-note{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px;margin-top:22px;text-align:left}
+.tl-note .btn-call,.tl-note .btn-call .phone-text{color:#111}
+@media(max-width:700px){.take-compact .take-list{grid-template-columns:1fr}.tl-note .btn-call.sm{width:100%;justify-content:center}}
+/* top menu: the two main services first, a quiet divider before the specialty items */
+@media(min-width:641px){.nav li:nth-child(2){margin-right:10px;padding-right:10px;border-right:1px solid rgba(255,255,255,.18)}}
+.take-compact{background:var(--soft)}
+.take-compact .sec-sub{margin-left:0}
